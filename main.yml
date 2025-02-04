@@ -1,0 +1,17 @@
+---
+- name: Example playbook
+  hosts: localhost
+  vars:
+    homebrew_cask_apps:
+      - zen-browser
+      - docker
+      - pgadmin4
+      - raycast
+      - vlc
+      - jordanbaird-ice
+      - balenaetcher
+      - mongodb-compass
+      - omnidisksweeper
+  roles:
+    # - geerlingguy.mac.homebrew
+    - macbook_setup.macbook_setup.dockutil

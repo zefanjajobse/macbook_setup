@@ -1,0 +1,38 @@
+{
+  "name": "ansible-dev-container-docker",
+  "image": "ghcr.io/ansible/community-ansible-dev-tools:latest",
+  "containerUser": "root",
+  "features": {
+    "ghcr.io/tailscale/codespace/tailscale": {}
+  },
+  "runArgs": [
+    "--security-opt",
+    "seccomp=unconfined",
+    "--security-opt",
+    "label=disable",
+    "--cap-add=SYS_ADMIN",
+    "--cap-add=SYS_RESOURCE",
+    "--device",
+    "/dev/fuse",
+    "--security-opt",
+    "apparmor=unconfined",
+    "--hostname=ansible-dev-container",
+    "--device=/dev/net/tun"
+  ],
+  "postStartCommand": "ansible-galaxy install -r collections/requirements.yml && export ANSIBLE_CONFIG=ansible.cfg",
+  "updateRemoteUserUID": true,
+  "containerEnv": {
+    "ANSIBLE_CONFIG": "ansible.cfg"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "redhat.ansible",
+        "redhat.vscode-redhat-account"
+      ]
+    }
+  },
+  "mounts": [
+    "type=bind,source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/root/.ssh,type=bind"
+  ]
+}

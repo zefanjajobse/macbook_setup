@@ -1,0 +1,4 @@
+# Whether to install dockutil or not
+dockutil_install: true
+
+dockutil_clear: true
