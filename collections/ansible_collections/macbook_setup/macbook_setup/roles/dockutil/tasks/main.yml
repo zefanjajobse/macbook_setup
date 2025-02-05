@@ -6,9 +6,9 @@
   notify:
     - Clear homebrew cache
   when: dockutil_install
-  tags: ['dock']
+  tags: ["dock"]
 
 - name: Clear Dock items.
   ansible.builtin.include_tasks: dock-clear.yml
   when: dockutil_clear
-  tags: ['dock']
+  tags: ["dock"]
